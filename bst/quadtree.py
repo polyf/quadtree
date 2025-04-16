@@ -1,5 +1,8 @@
+from typing import List
+
 from bst.interval_2d import Interval2D
 from bst.node import Node
+from bst.point import Point
 from bst.quadtree_adt import QuadTreeADT
 
 
@@ -49,3 +52,13 @@ class QuadTree(QuadTreeADT):
                 query_2D(current.SE, rect)
 
         query_2D(self._root, rect)
+
+    def search(self, point: Point) -> object:
+        def search(current: Node, x: object, y: object, value: object) -> object:
+            print("Desenvolver")
+        return None
+
+    def all_points(self) -> List[Point]:
+        def all_points(current: Node) -> List[Point]:
+            print("Desenvolver")
+        return []
