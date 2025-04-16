@@ -54,11 +54,33 @@ class QuadTree(QuadTreeADT):
         query_2D(self._root, rect)
 
     def search(self, point: Point) -> object:
-        def search(current: Node, x: object, y: object, value: object) -> object:
-            print("Desenvolver")
-        return None
+        def search(current: Node) -> object:
+            if current is None:
+                return None
+            if current.x == point.x and current.y == point.y:
+                return current.value
+
+            if point.x < current.x and point.y >= current.y:
+                return search(current.NW)
+            elif point.x < current.x and point.y < current.y:
+                return search(current.SW)
+            elif point.x >= current.x and point.y >= current.y:
+                return search(current.NE)
+            else:
+                return search(current.SE)
+
+        return search(self._root)
 
     def all_points(self) -> List[Point]:
         def all_points(current: Node) -> List[Point]:
-            print("Desenvolver")
-        return []
+            if current is None:
+                return []
+            points = [Point(current.x, current.y)]
+            points.extend(all_points(current.NW))
+            points.extend(all_points(current.NE))
+            points.extend(all_points(current.SE))
+            points.extend(all_points(current.SW))
+            return points
+
+        points_list = all_points(self._root)
+        return points_list if points_list else None
