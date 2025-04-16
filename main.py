@@ -1,16 +1,18 @@
-# This is a sample Python script.
+from bst.interval import Interval
+from bst.interval_2d import Interval2D
+from bst.quadtree import QuadTree
+from bst.quadtree_adt import QuadTreeADT
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    quad_tree: QuadTreeADT = QuadTree()
+    m = [[7, 6, 76],
+         [5, 6, 56],
+         [1, 1, 11],
+         [5, 5, 55],
+         [2, 7, 27],
+         [3, 3, 33]]
+    for a in m:
+        quad_tree.insert(a[0], a[1], a[2])
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    rect: Interval2D = Interval2D(Interval(1, 8), Interval(4, 8))
+    quad_tree.query_2D(rect)
